@@ -9,7 +9,7 @@ const questions = () => {
             message: "Enter the title of this project: ",
             name: "project_title"
         },{
-            typle: "list",
+            type: "list",
             name: "license",
             message: "what kind of license will this project have? ",
             choices: ["MIT", "ISC", "Apache2.0" ],
@@ -21,9 +21,45 @@ const questions = () => {
                     return false;
                 }
             },
+        },{
+            type: "input",
+            message: "Describe this project: ",
+            name: "description",
+        },{
+            type: "input",
+            message: "what is required for installing this project? ",
+            name: "installing",
+        },{
+            type: "input",
+            message: "what will the app do? ",
+            name: "ussage",
+        },{
+            type:"input",
+            message:"How can a usser contribute to this repo, if not put N/A: ",
+            name:"contribting",
+        },{
+            type: "input",
+            message: "what is your Github accounts URL?: ",
+            name: "github"
+        },{
+            type: "input",
+            message: "email: ",
+            name: "email"
+        },{
+            type:"input",
+            message:"What are the test commands?: ",
+            name:"test",
+        },{
+            type:"input",
+            message:"copyright data: ",
+            name:"copyright_date"
+        },{
+            type:"input",
+            message:"Name: ",
+            name:"author",
         },
-
-    ])};
+    ]);
+};
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {}
