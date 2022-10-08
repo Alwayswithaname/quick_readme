@@ -1,6 +1,7 @@
 // TODO: Include packages needed for this application
 const inquirer = require("inquirer");
-const fs = require("fs")
+const fs = require("fs");
+const generateMarkdown = require("./");
 // TODO: Create an array of questions for user input
 const questions = () => {
     return inquirer.createPromptModule([
@@ -28,7 +29,7 @@ const questions = () => {
         },{
             type: "input",
             message: "what is required for installing this project? ",
-            name: "installing",
+            name: "npm i",
         },{
             type: "input",
             message: "what will the app do? ",
@@ -48,7 +49,7 @@ const questions = () => {
         },{
             type:"input",
             message:"What are the test commands?: ",
-            name:"test",
+            name:"npm test",
         },{
             type:"input",
             message:"copyright data: ",
@@ -62,10 +63,16 @@ const questions = () => {
 };
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(fileName, data) {
+   return fs.writeFile(path.join(process.cwd(), fileName), data);
+}
 
 // TODO: Create a function to initialize app
-function init() {}
-
+function init() {
+    inquirer.prompt(questions).then((inquirerResponses) => {
+        console.log('Generating REAMDME...');
+        writeToFile('README.md', generateMarkdown({ ...inquirerResponses}));
+    });
+}
 // Function call to initialize app
 init();
