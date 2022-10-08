@@ -1,5 +1,3 @@
-const generateMarkdown = require("../../UCB-VIRT-FSF-PT-07-2022-U-LOLC/09-NodeJS/02-Challenge/Main/utils/generateMarkdown");
-
 function renderLicenseBadge(license) {
     if (license !== 'None') {
         return `![Github license]`
@@ -23,7 +21,7 @@ function renderLicenseSection(license) {
     return '';
 }
 
- function generateMarkdown(data) {
+ const generateMarkdown = data => {
     return `# ${data.title}
     ${renderLicenseBadge(data.license)}
     
@@ -32,7 +30,7 @@ function renderLicenseSection(license) {
     ${data.description} 
     
     ## Table of Contents
-    * [Instalation](#instalation)
+    * [installation](#installation)
     
     * [Usage](#usage)
     ${renderLicenseLink(data.license)}
@@ -48,7 +46,7 @@ function renderLicenseSection(license) {
     To install necessary dependencies, run the following command:
     
     \`\`\`
-    ${data.installtion}
+    ${data.installation}
     \`\`\`
     
     ## Usage
@@ -69,9 +67,8 @@ function renderLicenseSection(license) {
     ${data.test}
     \`\`\`
     
-    #Qestions
-    
-    If you have any questions aboput the repo, open an issue or contact mme at ${
+    ##Qestions
+    If you have any questions aboput the repo, open an issue or contact me at ${
         data.email
     }. you can find more of my work at [${data.github}](https://github.com/${
         data.github

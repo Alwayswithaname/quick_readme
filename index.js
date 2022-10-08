@@ -1,14 +1,26 @@
 // TODO: Include packages needed for this application
-const inquirer = require("inquirer");
 const fs = require("fs");
-const generateMarkdown = require("./");
+const path = require('path');
+const inquirer = require("inquirer");
+const generateMarkdown = require("./utils/generateMarkdown");
 // TODO: Create an array of questions for user input
-const questions = () => {
-    return inquirer.createPromptModule([
+const questions = [
         {
             type: "input",
-            message: "Enter the title of this project: ",
-            name: "project_title"
+            message: "what is your Github accounts URL?",
+            name: "github",
+        },{
+            type: "input",
+            message: "email? ",
+            name: "email",
+        },{
+            type: "input",
+            message: "what is your project name?",
+            name: "title",
+        },{
+            type: "input",
+            message: "Describe this project",
+            name: "description",
         },{
             type: "list",
             name: "license",
@@ -24,47 +36,32 @@ const questions = () => {
             },
         },{
             type: "input",
-            message: "Describe this project: ",
-            name: "description",
-        },{
-            type: "input",
             message: "what is required for installing this project? ",
-            name: "npm i",
-        },{
-            type: "input",
-            message: "what will the app do? ",
-            name: "ussage",
-        },{
-            type:"input",
-            message:"How can a usser contribute to this repo, if not put N/A: ",
-            name:"contribting",
-        },{
-            type: "input",
-            message: "what is your Github accounts URL?: ",
-            name: "github"
-        },{
-            type: "input",
-            message: "email: ",
-            name: "email"
+            name: "installation",
+            default: 'npm i',
         },{
             type:"input",
             message:"What are the test commands?: ",
-            name:"npm test",
+            name:"test",
+        },{
+            type: "input",
+            message: "what will the app do? ",
+            name: "usage",
         },{
             type:"input",
-            message:"copyright data: ",
-            name:"copyright_date"
+            message:"How can a user contribute to this repo, if not put N/A: ",
+            name:"contributing",
         },{
-            type:"input",
-            message:"Name: ",
-            name:"author",
-        },
-    ]);
-};
+            type: "input",
+            message:"do you have any questions?",
+            name:"questions",
+        }
+    
+    ];
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-   return fs.writeFile(path.join(process.cwd(), fileName), data);
+   return fs.writeFileSync(path.join(process.cwd(), fileName), data);
 }
 
 // TODO: Create a function to initialize app
